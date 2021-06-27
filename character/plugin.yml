@@ -1,0 +1,14 @@
+name: Character
+version: 0.1
+author: TomDalton
+main: de.TomDalton.Character.Main
+description: Charakter-Erstellung
+depend: [DLT_API]
+
+commands:
+   ch:
+      description: Hilfeseite aufrufen
+      usage: /ch help
+   char:
+      description: Charakter eines Spielers aufrufen
+      usage: /char *Spielername/RP-Name*

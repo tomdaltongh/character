@@ -1,0 +1,5 @@
+player_permissions:
+  Tom_Dalton:
+    permissions:
+      - essentials.gamemode.1
+    group: admin
