@@ -1,5 +1,8 @@
-player_permissions:
+userdata:
   Tom_Dalton:
-    permissions:
-      - essentials.gamemode.1
-    group: admin
+    name: dalton
+    vorname: tom
+    alter: 19
+    wohnort: unbekannt
+    geld: unbekannt
+    beruf: unbekannt

@@ -24,7 +24,7 @@ public class Main extends JavaPlugin{
 		createConfig();
 		initData();
 		createListener();
-		//new Group(this);
+		new Ch(this);
 		//new Permission(this);
 	}
 
