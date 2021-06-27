@@ -70,19 +70,11 @@ public class Ch implements CommandExecutor{
 							userdata.set("userdata."+p.getDisplayName()+".beruf", args[2]);
 							sender.sendMessage(prefix+" Der Beruf "+args[2]+" wurde gespeichert.");
 						}else {
-							sender.sendMessage(prefix+" Diese Kategorie wurde noch nicht eingerichtet.");
+							sender.sendMessage(prefix+" Kategorie noch nicht eingerichtet oder vorherige Angaben wurden bestätigt und können nicht geändert werden.");
 						}
 						Api.saveData(userdata, data);
 					}
 					sender.sendMessage(prefix+" (Info) Überprüfe deine Angaben auf Richtigkeit und korrigiere, falls nötig.");
-				}else if(args[0].equalsIgnoreCase("erstellen")) {
-					p.sendMessage(prefix+" Führe die folgenden Befehle aus, um deinen RP-Charakter zu erstellen.");
-					p.sendMessage(prefix+" Bitte beachte bei der Erstellung die aktuellen RP-Richtlinien.");
-					p.sendMessage(prefix+" /ch set rpname *Name*");
-					p.sendMessage(prefix+" /ch set vorname *Vorname*");
-					p.sendMessage(prefix+" /ch set alter *Alter*");
-					p.sendMessage(prefix+" /ch set beruf *aktueller Beruf*");
-					p.sendMessage(prefix+" Mit dem Befehl /ch sign kannst du deine Angaben bestätigen und bist bestätigter Bürger.");
 				}else {
 					p.sendMessage(prefix+" Benutze /ch erstellen um dir Hilfe anzeigen zu lassen.");
 				}
@@ -108,6 +100,16 @@ public class Ch implements CommandExecutor{
 					/*
 					 * hier noch Geld an Erbe schicken, welches Economy Plugin?
 					 */
+				}else if(args[0].equalsIgnoreCase("erstellen")) {
+					p.sendMessage(prefix+" Führe die folgenden Befehle aus, um deinen RP-Charakter zu erstellen.");
+					p.sendMessage(prefix+" Bitte beachte bei der Erstellung die aktuellen RP-Richtlinien.");
+					p.sendMessage(prefix+" /ch set rpname *Name*");
+					p.sendMessage(prefix+" /ch set vorname *Vorname*");
+					p.sendMessage(prefix+" /ch set alter *Alter*");
+					p.sendMessage(prefix+" /ch set beruf *aktueller Beruf*");
+					p.sendMessage(prefix+" Mit dem Befehl /ch sign kannst du deine Angaben bestätigen und bist bestätigter Bürger.");
+				}else {
+					p.sendMessage(prefix+" Benutze /ch erstellen um dir Hilfe anzeigen zu lassen.");
 				}
 			}else if(args.length==2) {
 				if(args[0].equalsIgnoreCase("seterbe")) {
@@ -125,13 +127,14 @@ public class Ch implements CommandExecutor{
 		}else {
 			System.out.println(prefix + " Dieser Befehl funktioniert nur als Spieler.");
 		}
-		return false;
+		return true;
 	}
 	
 	public boolean signed(Player p) {
-		if(userdata.getString("userdata."+p.getDisplayName()+".signed").equals("true")) {
+		try {
+			boolean bool = userdata.getString("userdata."+p.getDisplayName()+".signed").equals("true");
 			return true;
-		}else {
+		}catch(Exception e) {
 			return false;
 		}
 	}
