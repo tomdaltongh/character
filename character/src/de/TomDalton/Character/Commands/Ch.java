@@ -94,6 +94,20 @@ public class Ch implements CommandExecutor{
 					p.sendMessage(prefix+" Du hast deine Angaben bestätigt und kannst diese nun nicht mehr ändern.");
 					p.sendMessage(prefix+" >/ch set beruf *aktueller Beruf*< ist davon ausgeschlossen.");
 					p.sendMessage(prefix+" Du möchtest einen anderen Charakter erstellen? Nutze >/ch kill< um deinen Fortschritt zu löschen.");
+				}else if(args[0].equalsIgnoreCase("kill")) {
+					userdata.set("userdata."+p.getDisplayName()+".singed", "false");
+					userdata.set("userdata."+p.getDisplayName()+".name", "unbekannt");
+					userdata.set("userdata."+p.getDisplayName()+".vorname", "unbekannt");
+					userdata.set("userdata."+p.getDisplayName()+".alter", 0);
+					userdata.set("userdata."+p.getDisplayName()+".geld", 0);
+					userdata.set("userdata."+p.getDisplayName()+".beruf", "unbekannt");
+					
+					Api.saveData(userdata, data);
+					
+					
+					/*
+					 * hier noch Geld an Erbe schicken, welches Economy Plugin?
+					 */
 				}
 			}else if(args.length==2) {
 				if(args[0].equalsIgnoreCase("seterbe")) {
