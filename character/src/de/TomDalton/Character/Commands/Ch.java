@@ -115,10 +115,9 @@ public class Ch implements CommandExecutor{
 				if(args[0].equalsIgnoreCase("seterbe")) {
 					try {
 						Player erbe = Bukkit.getPlayer(args[1]);
-						if(erbe != null) {
-							userdata.set("userdata."+p.getDisplayName()+".erbe", erbe.getDisplayName());
-							Api.saveData(userdata, data);
-						}
+						userdata.set("userdata."+p.getDisplayName()+".erbe", erbe.getDisplayName());
+						Api.saveData(userdata, data);
+						p.sendMessage(prefix+" Der Spieler "+erbe.getName()+" ist nun dein Erbe.");
 					}catch(Exception e) {
 						p.sendMessage(prefix+" Der Spieler war noch nicht auf dem Server");
 					}
@@ -132,8 +131,11 @@ public class Ch implements CommandExecutor{
 	
 	public boolean signed(Player p) {
 		try {
-			boolean bool = userdata.getString("userdata."+p.getDisplayName()+".signed").equals("true");
-			return true;
+			if(userdata.getString("userdata."+p.getDisplayName()+".signed").equals("true")) {
+				return true;
+			}else {
+				return false;
+			}
 		}catch(Exception e) {
 			return false;
 		}
