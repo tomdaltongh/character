@@ -87,7 +87,7 @@ public class Ch implements CommandExecutor{
 					p.sendMessage(prefix+" >/ch set beruf *aktueller Beruf*< ist davon ausgeschlossen.");
 					p.sendMessage(prefix+" Du möchtest einen anderen Charakter erstellen? Nutze >/ch kill< um deinen Fortschritt zu löschen.");
 				}else if(args[0].equalsIgnoreCase("kill")) {
-					userdata.set("userdata."+p.getDisplayName()+".singed", "false");
+					userdata.set("userdata."+p.getDisplayName()+".signed", "false");
 					userdata.set("userdata."+p.getDisplayName()+".name", "unbekannt");
 					userdata.set("userdata."+p.getDisplayName()+".vorname", "unbekannt");
 					userdata.set("userdata."+p.getDisplayName()+".alter", 0);
