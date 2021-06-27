@@ -104,7 +104,7 @@ public class Ch implements CommandExecutor{
 							Api.saveData(userdata, data);
 						}
 					}catch(Exception e) {
-						
+						p.sendMessage(prefix+" Der Spieler war noch nicht auf dem Server");
 					}
 				}
 			}
