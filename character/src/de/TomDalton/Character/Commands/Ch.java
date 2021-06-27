@@ -3,6 +3,7 @@ package de.TomDalton.Character.Commands;
 import java.io.File;
 import java.util.Random;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -10,6 +11,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
+import api.Api;
 import de.TomDalton.Character.Main;
 
 public class Ch implements CommandExecutor{
@@ -62,6 +64,7 @@ public class Ch implements CommandExecutor{
 						}else {
 							sender.sendMessage(prefix+" Diese Kategorie wurde noch nicht eingerichtet.");
 						}
+						Api.saveData(userdata, data);
 					}else {
 						if(mode.equalsIgnoreCase("beruf")) {
 							userdata.set("userdata."+p.getDisplayName()+".beruf", args[2]);
@@ -69,8 +72,8 @@ public class Ch implements CommandExecutor{
 						}else {
 							sender.sendMessage(prefix+" Diese Kategorie wurde noch nicht eingerichtet.");
 						}
+						Api.saveData(userdata, data);
 					}
-					Api.saveData(userdata, data);
 					sender.sendMessage(prefix+" (Info) Überprüfe deine Angaben auf Richtigkeit und korrigiere, falls nötig.");
 				}else if(args[0].equalsIgnoreCase("erstellen")) {
 					p.sendMessage(prefix+" Führe die folgenden Befehle aus, um deinen RP-Charakter zu erstellen.");
@@ -93,8 +96,16 @@ public class Ch implements CommandExecutor{
 					p.sendMessage(prefix+" Du möchtest einen anderen Charakter erstellen? Nutze >/ch kill< um deinen Fortschritt zu löschen.");
 				}
 			}else if(args.length==2) {
-				if() {
-					
+				if(args[0].equalsIgnoreCase("seterbe")) {
+					try {
+						Player erbe = Bukkit.getPlayer(args[1]);
+						if(erbe != null) {
+							userdata.set("userdata."+p.getDisplayName()+".erbe", erbe.getDisplayName());
+							Api.saveData(userdata, data);
+						}
+					}catch(Exception e) {
+						
+					}
 				}
 			}
 		}else {

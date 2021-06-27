@@ -6,6 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/tomro/Documents/plugins/jars/spigot-1.16.4.jar"/>
+	<classpathentry kind="lib" path="D:/minecraft_plugins/jars/server.jar"/>
+	<classpathentry kind="lib" path="D:/minecraft_plugins/jars/dltapi.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
