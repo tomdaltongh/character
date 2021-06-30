@@ -36,5 +36,6 @@ public class TownyListener implements Listener{
 		Player p = Bukkit.getPlayer(e.getResident().getUUID());
 		p.sendMessage(prefix + " Du bist einer anderen Stadt beigetreten, diese wird automatisch auf deinem Ausweis eingetragen.");
 		userdata.set("userdata."+p.getDisplayName()+".wohnort", e.getTown().getName());
+		Api.saveData(userdata, data);
 	}
 }
