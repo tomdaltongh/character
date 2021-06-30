@@ -48,17 +48,23 @@ public class AusweisGUI implements Listener{
 	
 	public Inventory initItems(Inventory ivn, Player p) {
 		String name = userdata.getString("userdata."+p.getDisplayName()+".vorname")+" "+userdata.getString("userdata."+p.getDisplayName()+".name");
-		int alter = userdata.getInt("userdata."+p.getDisplayName()+".alter");
+		String alter = userdata.getString("userdata."+p.getDisplayName()+".alter");
 		String wohnort = userdata.getString("userdata."+p.getDisplayName()+".wohnort");
-		int geld = userdata.getInt("userdata."+p.getDisplayName()+".geld");
+		String geld = userdata.getString("userdata."+p.getDisplayName()+".geld");
 		String beruf = userdata.getString("userdata."+p.getDisplayName()+".beruf");
-		String erbe = userdata.getString("userdata."+p.getDisplayName()+".erbe");
-		ivn.addItem(createGuiItem(Material.PLAYER_HEAD, "Vor- und Nachname", name, ""));
-		ivn.addItem(createGuiItem(Material.CLOCK, "Alter", alter+"", ""));
-		ivn.addItem(createGuiItem(Material.COMPASS, "Wohnort", wohnort+"", ""));
-		ivn.addItem(createGuiItem(Material.GOLD_NUGGET, "Geld", geld+"", ""));
-		ivn.addItem(createGuiItem(Material.NETHERITE_PICKAXE, "Beruf", beruf+"", ""));
-		ivn.addItem(createGuiItem(Material.LEATHER_BOOTS, "Erbe", erbe+"", ""));
+		//<---Übergangslösung--->
+		if(wohnort==null) {
+			wohnort="unbekannt";
+		}
+		if(geld==null) {
+			geld="unbekannt";
+		}
+		//<------>
+		ivn.setItem(0, createGuiItem(Material.PLAYER_HEAD, "Vor- und Nachname", name, ""));
+		ivn.setItem(2, createGuiItem(Material.CLOCK, "Alter", alter+"", ""));
+		ivn.setItem(4, createGuiItem(Material.COMPASS, "Wohnort", wohnort+"", ""));
+		ivn.setItem(6, createGuiItem(Material.GOLD_NUGGET, "Geld", geld+"", ""));
+		ivn.setItem(8, createGuiItem(Material.NETHERITE_PICKAXE, "Beruf", beruf+"", ""));
 		return ivn;
 	}
 	

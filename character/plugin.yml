@@ -1,5 +1,6 @@
 name: Character
-version: 0.1
+version: 0.5
+api-version: 1.16
 author: TomDalton
 main: de.TomDalton.Character.Main
 description: Charakter-Erstellung

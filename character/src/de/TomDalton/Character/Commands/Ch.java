@@ -12,6 +12,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import api.Api;
+import de.TomDalton.Character.AusweisGUI;
 import de.TomDalton.Character.Main;
 
 public class Ch implements CommandExecutor{
@@ -108,6 +109,10 @@ public class Ch implements CommandExecutor{
 					p.sendMessage(prefix+" /ch set alter *Alter*");
 					p.sendMessage(prefix+" /ch set beruf *aktueller Beruf*");
 					p.sendMessage(prefix+" Mit dem Befehl /ch sign kannst du deine Angaben bestätigen und bist bestätigter Bürger.");
+				}else if(Bukkit.getPlayer(args[0]) != null) {
+					AusweisGUI gui = new AusweisGUI(plugin);
+					p.openInventory(gui.getIventory(Bukkit.getPlayer(args[0])));
+					p.sendMessage(prefix+" Mit dem Befehl /ch *Spielername* kannst du dir den Ausweis eines Spielers ansehen.");
 				}else {
 					p.sendMessage(prefix+" Benutze /ch erstellen um dir Hilfe anzeigen zu lassen.");
 				}
