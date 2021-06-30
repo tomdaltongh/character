@@ -4,7 +4,7 @@ api-version: 1.16
 author: TomDalton
 main: de.TomDalton.Character.Main
 description: Charakter-Erstellung
-depend: [DLT_API]
+depend: [DLT_API, Towny]
 
 commands:
    ch:
