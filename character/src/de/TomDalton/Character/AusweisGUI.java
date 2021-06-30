@@ -39,16 +39,26 @@ public class AusweisGUI implements Listener{
 	
 	
 	public Inventory getIventory(Player p) {
-		Inventory ivn = Bukkit.createInventory(p, 9, "Ausweis von "+p.getDisplayName());
+		Inventory ivn = Bukkit.createInventory(null, 9, "Ausweis von "+p.getDisplayName());
 		
-		ivn = initItems(ivn);//Items initialisieren
+		ivn = initItems(ivn,p);//Items initialisieren
 		
 		return ivn;
 	}
 	
-	public Inventory initItems(Inventory ivn) {
-		ivn.addItem(createGuiItem(Material.DIAMOND_SWORD, "Example Sword", "§aFirst line of the lore", "§bSecond line of the lore"));
-		ivn.addItem(createGuiItem(Material.IRON_HELMET, "§bExample Helmet", "§aFirst line of the lore", "§bSecond line of the lore"));
+	public Inventory initItems(Inventory ivn, Player p) {
+		String name = userdata.getString("userdata."+p.getDisplayName()+".vorname")+" "+userdata.getString("userdata."+p.getDisplayName()+".name");
+		int alter = userdata.getInt("userdata."+p.getDisplayName()+".alter");
+		String wohnort = userdata.getString("userdata."+p.getDisplayName()+".wohnort");
+		int geld = userdata.getInt("userdata."+p.getDisplayName()+".geld");
+		String beruf = userdata.getString("userdata."+p.getDisplayName()+".beruf");
+		String erbe = userdata.getString("userdata."+p.getDisplayName()+".erbe");
+		ivn.addItem(createGuiItem(Material.PLAYER_HEAD, "Vor- und Nachname", name, ""));
+		ivn.addItem(createGuiItem(Material.CLOCK, "Alter", alter+"", ""));
+		ivn.addItem(createGuiItem(Material.CLOCK, "Wohnort", wohnort+"", ""));
+		ivn.addItem(createGuiItem(Material.CLOCK, "Geld", geld+"", ""));
+		ivn.addItem(createGuiItem(Material.CLOCK, "Beruf", beruf+"", ""));
+		ivn.addItem(createGuiItem(Material.CLOCK, "Erbe", erbe+"", ""));
 		return ivn;
 	}
 	
