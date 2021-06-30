@@ -2,16 +2,13 @@ package de.TomDalton.Character;
 
 
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 public class ListenerClass implements org.bukkit.event.Listener{
 	
+	@SuppressWarnings("unused")
 	private Main plugin;
 
 	public ListenerClass(Main plugin) {

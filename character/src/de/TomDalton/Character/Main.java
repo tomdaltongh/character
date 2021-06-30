@@ -1,8 +1,6 @@
 package de.TomDalton.Character;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -11,13 +9,10 @@ import de.TomDalton.Character.Commands.Ch;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
-import org.bukkit.permissions.PermissionAttachment;
 
 public class Main extends JavaPlugin{
 	
 	public FileConfiguration config;
-	public HashMap<UUID, PermissionAttachment> perms = new HashMap<UUID, PermissionAttachment>();
 	private File data;
 	private YamlConfiguration chardata;
 	
@@ -27,6 +22,7 @@ public class Main extends JavaPlugin{
 		initData();
 		createListener();
 		new Ch(this);
+		new TownyListener(this);
 		//new Permission(this);
 	}
 
