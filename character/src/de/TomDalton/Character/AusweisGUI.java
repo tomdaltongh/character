@@ -55,10 +55,10 @@ public class AusweisGUI implements Listener{
 		String erbe = userdata.getString("userdata."+p.getDisplayName()+".erbe");
 		ivn.addItem(createGuiItem(Material.PLAYER_HEAD, "Vor- und Nachname", name, ""));
 		ivn.addItem(createGuiItem(Material.CLOCK, "Alter", alter+"", ""));
-		ivn.addItem(createGuiItem(Material.CLOCK, "Wohnort", wohnort+"", ""));
-		ivn.addItem(createGuiItem(Material.CLOCK, "Geld", geld+"", ""));
-		ivn.addItem(createGuiItem(Material.CLOCK, "Beruf", beruf+"", ""));
-		ivn.addItem(createGuiItem(Material.CLOCK, "Erbe", erbe+"", ""));
+		ivn.addItem(createGuiItem(Material.COMPASS, "Wohnort", wohnort+"", ""));
+		ivn.addItem(createGuiItem(Material.GOLD_NUGGET, "Geld", geld+"", ""));
+		ivn.addItem(createGuiItem(Material.NETHERITE_PICKAXE, "Beruf", beruf+"", ""));
+		ivn.addItem(createGuiItem(Material.LEATHER_BOOTS, "Erbe", erbe+"", ""));
 		return ivn;
 	}
 	
