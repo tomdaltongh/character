@@ -32,7 +32,7 @@ public class Ch implements CommandExecutor{
 		Api.saveData(userdata,data);
 		
 		prefix = Api.getConfigString(config,"nachrichten.prefix").replace('&', '§');
-		vault = new getVault();
+		vault = new getVault(this.plugin);
 		plugin.getCommand("ch").setExecutor(this);
 	}
 	
