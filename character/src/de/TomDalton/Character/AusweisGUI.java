@@ -47,11 +47,11 @@ public class AusweisGUI implements Listener{
 	}
 	
 	public Inventory initItems(Inventory ivn, Player p) {
-		String name = userdata.getString("userdata."+p.getDisplayName()+".vorname")+" "+userdata.getString("userdata."+p.getDisplayName()+".name");
-		String alter = userdata.getString("userdata."+p.getDisplayName()+".alter");
-		String wohnort = userdata.getString("userdata."+p.getDisplayName()+".wohnort");
-		String geld = userdata.getString("userdata."+p.getDisplayName()+".geld");
-		String beruf = userdata.getString("userdata."+p.getDisplayName()+".beruf");
+		String name = userdata.getString("userdata."+p.getName()+".vorname")+" "+userdata.getString("userdata."+p.getName()+".name");
+		String alter = userdata.getString("userdata."+p.getName()+".alter");
+		String wohnort = userdata.getString("userdata."+p.getName()+".wohnort");
+		String geld = userdata.getString("userdata."+p.getName()+".geld");
+		String beruf = userdata.getString("userdata."+p.getName()+".beruf");
 		//<---Übergangslösung--->
 		if(wohnort==null) {
 			wohnort="unbekannt";

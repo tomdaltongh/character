@@ -96,7 +96,6 @@ public class Ch implements CommandExecutor{
 					userdata.set("userdata."+p.getName()+".name", "unbekannt");
 					userdata.set("userdata."+p.getName()+".vorname", "unbekannt");
 					userdata.set("userdata."+p.getName()+".alter", 0);
-					userdata.set("userdata."+p.getName()+".geld", 0);
 					userdata.set("userdata."+p.getName()+".beruf", "unbekannt");
 					
 					Api.saveData(userdata, data);
@@ -108,7 +107,8 @@ public class Ch implements CommandExecutor{
 					if(erbe != null) {
 						vault.getEconomy().depositPlayer(Bukkit.getPlayer(erbe), aktuell);
 					}
-					
+					userdata.set("userdata."+p.getName()+".geld", 0);
+					Api.saveData(userdata, data);
 				}else if(args[0].equalsIgnoreCase("erstellen")) {
 					p.sendMessage(prefix+" Führe die folgenden Befehle aus, um deinen RP-Charakter zu erstellen.");
 					p.sendMessage(prefix+" Bitte beachte bei der Erstellung die aktuellen RP-Richtlinien.");
@@ -136,10 +136,18 @@ public class Ch implements CommandExecutor{
 					}
 				}
 			}
+			
+			//UPDATE GELD in data.yml? Effizienz?
+			update(p);
 		}else {
 			System.out.println(prefix + " Dieser Befehl funktioniert nur als Spieler.");
 		}
 		return true;
+	}
+	
+	public void update(Player p) {
+		userdata.set("userdata."+p.getName()+".geld", getKonto(p));
+		Api.saveData(userdata, data);
 	}
 	
 	public int getKonto(Player p) {
