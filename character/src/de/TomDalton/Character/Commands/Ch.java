@@ -53,16 +53,16 @@ public class Ch implements CommandExecutor{
 					String mode = args[1];
 					if(!signed(p)) {
 						if(mode.equalsIgnoreCase("rpname")) {
-							userdata.set("userdata."+p.getDisplayName()+".name", args[2]);
+							userdata.set("userdata."+p.getName()+".name", args[2]);
 							sender.sendMessage(prefix+" Der Name "+args[2]+" wurde gespeichert.");
 						}else if(mode.equalsIgnoreCase("vorname")) {
-							userdata.set("userdata."+p.getDisplayName()+".vorname", args[2]);
+							userdata.set("userdata."+p.getName()+".vorname", args[2]);
 							sender.sendMessage(prefix+" Der Vorname "+args[2]+" wurde gespeichert.");
 						}else if(mode.equalsIgnoreCase("alter")) {
-							userdata.set("userdata."+p.getDisplayName()+".alter", args[2]);
+							userdata.set("userdata."+p.getName()+".alter", args[2]);
 							sender.sendMessage(prefix+" Das Alter "+args[2]+" wurde gespeichert.");
 						}else if(mode.equalsIgnoreCase("beruf")) {
-							userdata.set("userdata."+p.getDisplayName()+".beruf", args[2]);
+							userdata.set("userdata."+p.getName()+".beruf", args[2]);
 							sender.sendMessage(prefix+" Der Beruf "+args[2]+" wurde gespeichert.");
 						}else {
 							sender.sendMessage(prefix+" Diese Kategorie wurde noch nicht eingerichtet.");
@@ -70,7 +70,7 @@ public class Ch implements CommandExecutor{
 						Api.saveData(userdata, data);
 					}else {
 						if(mode.equalsIgnoreCase("beruf")) {
-							userdata.set("userdata."+p.getDisplayName()+".beruf", args[2]);
+							userdata.set("userdata."+p.getName()+".beruf", args[2]);
 							sender.sendMessage(prefix+" Der Beruf "+args[2]+" wurde gespeichert.");
 						}else {
 							sender.sendMessage(prefix+" Kategorie noch nicht eingerichtet oder vorherige Angaben wurden bestätigt und können nicht geändert werden.");
@@ -83,28 +83,28 @@ public class Ch implements CommandExecutor{
 				}
 			}else if(args.length==1) {
 				if(args[0].equalsIgnoreCase("sign")) {
-					userdata.set("userdata."+p.getDisplayName()+".signed", "true");
+					userdata.set("userdata."+p.getName()+".signed", "true");
 
-					userdata.set("userdata."+p.getDisplayName()+".geld", getKonto(p));
+					userdata.set("userdata."+p.getName()+".geld", getKonto(p));
 					
 					Api.saveData(userdata, data);
 					p.sendMessage(prefix+" Du hast deine Angaben bestätigt und kannst diese nun nicht mehr ändern.");
 					p.sendMessage(prefix+" >/ch set beruf *aktueller Beruf*< ist davon ausgeschlossen.");
 					p.sendMessage(prefix+" Du möchtest einen anderen Charakter erstellen? Nutze >/ch kill< um deinen Fortschritt zu löschen.");
 				}else if(args[0].equalsIgnoreCase("kill")) {
-					userdata.set("userdata."+p.getDisplayName()+".signed", "false");
-					userdata.set("userdata."+p.getDisplayName()+".name", "unbekannt");
-					userdata.set("userdata."+p.getDisplayName()+".vorname", "unbekannt");
-					userdata.set("userdata."+p.getDisplayName()+".alter", 0);
-					userdata.set("userdata."+p.getDisplayName()+".geld", 0);
-					userdata.set("userdata."+p.getDisplayName()+".beruf", "unbekannt");
+					userdata.set("userdata."+p.getName()+".signed", "false");
+					userdata.set("userdata."+p.getName()+".name", "unbekannt");
+					userdata.set("userdata."+p.getName()+".vorname", "unbekannt");
+					userdata.set("userdata."+p.getName()+".alter", 0);
+					userdata.set("userdata."+p.getName()+".geld", 0);
+					userdata.set("userdata."+p.getName()+".beruf", "unbekannt");
 					
 					Api.saveData(userdata, data);
 					
 					//Geld wird abgezogen und dem (wenn existent) Erbe übergeben
 					int aktuell = (int) vault.getEconomy().getBalance(p);
 					vault.getEconomy().withdrawPlayer(p, vault.getEconomy().getBalance(p));
-					String erbe = userdata.getString("userdata."+p.getDisplayName()+".erbe");
+					String erbe = userdata.getString("userdata."+p.getName()+".erbe");
 					if(erbe != null) {
 						vault.getEconomy().depositPlayer(Bukkit.getPlayer(erbe), aktuell);
 					}
@@ -128,7 +128,7 @@ public class Ch implements CommandExecutor{
 				if(args[0].equalsIgnoreCase("seterbe")) {
 					try {
 						Player erbe = Bukkit.getPlayer(args[1]);
-						userdata.set("userdata."+p.getDisplayName()+".erbe", erbe.getDisplayName());
+						userdata.set("userdata."+p.getName()+".erbe", erbe.getName());
 						Api.saveData(userdata, data);
 						p.sendMessage(prefix+" Der Spieler "+erbe.getName()+" ist nun dein Erbe.");
 					}catch(Exception e) {
@@ -152,7 +152,7 @@ public class Ch implements CommandExecutor{
 	
 	public boolean signed(Player p) {
 		try {
-			if(userdata.getString("userdata."+p.getDisplayName()+".signed").equals("true")) {
+			if(userdata.getString("userdata."+p.getName()+".signed").equals("true")) {
 				return true;
 			}else {
 				return false;
