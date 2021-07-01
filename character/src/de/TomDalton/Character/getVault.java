@@ -2,19 +2,19 @@ package de.TomDalton.Character;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import net.milkbowl.vault.economy.Economy;
 
-public class getVault extends JavaPlugin {
+public class getVault{
 
     private Economy econ;
+    private Main plugin;
 
-    @Override
-    public void onEnable(){
+    public getVault(Main plugin){
+    	this.plugin = plugin;
+    	
         if (!setupEconomy()) {
-            this.getLogger().severe("[Character]"+" Verbindung zu Vault fehlgeschlagen. Plugin wird deaktiviert.");
-            Bukkit.getPluginManager().disablePlugin(this);
+            this.plugin.getLogger().severe("[Character]"+" Verbindung zu Vault fehlgeschlagen.");
             return;
         }
     }
@@ -24,7 +24,7 @@ public class getVault extends JavaPlugin {
             return false;
         }
 
-        RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+        RegisteredServiceProvider<Economy> rsp = plugin.getServer().getServicesManager().getRegistration(Economy.class);
         if (rsp == null) {
             return false;
         }
