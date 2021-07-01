@@ -101,10 +101,14 @@ public class Ch implements CommandExecutor{
 					
 					Api.saveData(userdata, data);
 					
+					//Geld wird abgezogen und dem (wenn existent) Erbe übergeben
+					int aktuell = (int) vault.getEconomy().getBalance(p);
+					vault.getEconomy().withdrawPlayer(p, vault.getEconomy().getBalance(p));
+					String erbe = userdata.getString("userdata."+p.getDisplayName()+".erbe");
+					if(erbe != null) {
+						vault.getEconomy().depositPlayer(Bukkit.getPlayer(erbe), aktuell);
+					}
 					
-					/*
-					 * hier noch Geld an Erbe schicken, welches Economy Plugin?
-					 */
 				}else if(args[0].equalsIgnoreCase("erstellen")) {
 					p.sendMessage(prefix+" Führe die folgenden Befehle aus, um deinen RP-Charakter zu erstellen.");
 					p.sendMessage(prefix+" Bitte beachte bei der Erstellung die aktuellen RP-Richtlinien.");
