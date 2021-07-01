@@ -119,6 +119,7 @@ public class Ch implements CommandExecutor{
 					p.sendMessage(prefix+" Mit dem Befehl /ch sign kannst du deine Angaben bestätigen und bist bestätigter Bürger.");
 				}else if(Bukkit.getPlayer(args[0]) != null) {
 					AusweisGUI gui = new AusweisGUI(plugin);
+					update(Bukkit.getPlayer(args[0]));
 					p.openInventory(gui.getIventory(Bukkit.getPlayer(args[0])));
 					p.sendMessage(prefix+" Mit dem Befehl /ch *Spielername* kannst du dir den Ausweis eines Spielers ansehen.");
 				}else {
