@@ -1,7 +1,6 @@
 package de.TomDalton.Character.Commands;
 
 import java.io.File;
-import java.util.Random;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -14,6 +13,7 @@ import org.bukkit.entity.Player;
 import api.Api;
 import de.TomDalton.Character.AusweisGUI;
 import de.TomDalton.Character.Main;
+import de.TomDalton.Character.getVault;
 
 public class Ch implements CommandExecutor{
 
@@ -21,6 +21,7 @@ public class Ch implements CommandExecutor{
 	private File data;
 	private FileConfiguration userdata;
 	private String prefix;
+	private getVault vault;
 	
 	public Ch(Main plugin){
 		this.plugin = plugin;
@@ -31,6 +32,7 @@ public class Ch implements CommandExecutor{
 		Api.saveData(userdata,data);
 		
 		prefix = Api.getConfigString(config,"nachrichten.prefix").replace('&', '§');
+		vault = new getVault();
 		plugin.getCommand("ch").setExecutor(this);
 	}
 	
@@ -82,6 +84,8 @@ public class Ch implements CommandExecutor{
 			}else if(args.length==1) {
 				if(args[0].equalsIgnoreCase("sign")) {
 					userdata.set("userdata."+p.getDisplayName()+".signed", "true");
+
+					userdata.set("userdata."+p.getDisplayName()+".geld", getKonto(p));
 					
 					Api.saveData(userdata, data);
 					p.sendMessage(prefix+" Du hast deine Angaben bestätigt und kannst diese nun nicht mehr ändern.");
@@ -132,6 +136,14 @@ public class Ch implements CommandExecutor{
 			System.out.println(prefix + " Dieser Befehl funktioniert nur als Spieler.");
 		}
 		return true;
+	}
+	
+	public int getKonto(Player p) {
+		int geld = 0;
+		
+		geld = (int) vault.getEconomy().getBalance(p);
+		
+		return geld;
 	}
 	
 	public boolean signed(Player p) {
